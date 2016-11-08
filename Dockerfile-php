@@ -1,1 +1,16 @@
-Dockerfile
+FROM ubuntu:14.04
+
+WORKDIR /var/www/html
+
+RUN apt-get update -y &&  \
+    apt-get install apache2 -y && \
+    apt-get install php5 libapache2-mod-php5 php5-mcrypt -y && \
+    apt-get install php5-cli git curl -y
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN a2enmod php5
+
+RUN composer require perimeterx/php-sdk
+RUN composer install
+
+CMD ["bash"]
