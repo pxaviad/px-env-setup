@@ -9,6 +9,7 @@ RUN apt-get update -y &&  \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN a2enmod php5
+RUN php5enmod mcrypt
 
 RUN composer require perimeterx/php-sdk
 RUN composer install
